@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XcendLabs - Digital Growth Accelerators</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Inter Fallback', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-size: 16px; /* Base font size */
+        }
+
+        .nav {
+            padding: 1.5rem 5%;
+            background-color: #000000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .nav .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(142, 142, 142, 0.1) 0,
+                rgba(142, 142, 142, 0.1) 1px,
+                transparent 1px,
+                transparent 50px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                rgba(142, 142, 142, 0.1) 0,
+                rgba(142, 142, 142, 0.1) 1px,
+                transparent 1px,
+                transparent 50px
+            );
+            z-index: -1;
+            transition: opacity 0.3s;
+        }
+
+        .nav.scrolled .grid-background {
+            opacity: 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background-color: #000000;
+            position: relative;
+        }
+
+        .hero .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(142, 142, 142, 0.1) 0,
+                rgba(142, 142, 142, 0.1) 1px,
+                transparent 1px,
+                transparent 50px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                rgba(142, 142, 142, 0.1) 0,
+                rgba(142, 142, 142, 0.1) 1px,
+                transparent 1px,
+                transparent 50px
+            );
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #fff, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content h1 .xcendlabs {
+            font-weight: bold;
+            font-size: 5rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2.5rem;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #ff3333;
+        }
+
+        .services {
+            padding: 7rem 5%;
+            background-color: #111111;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .why-us {
+            padding: 5rem 5%;
+            background-color: #000000;
+        }
+
+        .benefits-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        footer {
+            padding: 3rem 5%;
+            background-color: #111111;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff3333;
+        }
+
+        .tagline {
+            font-family: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+            font-size: 1.5rem;
+            color: #bbbdc4;
+        }
+
+        .divider {
+            width: 200px;
+            height: 4px;
+            background-color: #898a8d;
+            margin: 1rem auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .benefit-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            body {
+                font-size: 14px; /* Smaller font size for mobile */
+            }
+        }
+
+        /* Testimonials Section */
+        .testimonial-section {
+            max-width: 900px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .testimonials-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #4a5568;
+            margin-top: 10px;
+            transform: translateY(20%);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card.highlight {
+            border-left-color: #48bb78;
+            background-color: #f7fafc;
+        }
+
+        .testimonial {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            width: 280px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial.active {
+            background-color: black;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        blockquote {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .author {
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .testimonial.active .author {
+            color: #ddd;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: #ffffff;
+        }
+
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const tagline = "Transform your digital presence with AI-powered automation";
+            const taglineElement = document.querySelector('.tagline');
+            let index = 0;
+
+            function type() {
+                if (index < tagline.length) {
+                    taglineElement.textContent += tagline.charAt(index);
+                    index++;
+                    setTimeout(type, 60);
+                }
+            }
+
+            type();
+
+            // Hide grid background on scroll
+            const nav = document.querySelector('.nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 0) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            const testimonials = document.querySelectorAll(".testimonial");
+
+            testimonials.forEach(testimonial => {
+                testimonial.addEventListener("mouseenter", () => {
+                    testimonials.forEach(t => t.classList.remove("active"));
+                    testimonial.classList.add("active");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="grid-background"></div>
+        <div class="logo">XcendLabs</div>
+        <a href="#contact"><button class="cta-button" onclick="window.location.href='https://calendly.com/xcendlabs/free-strategy-call';">BOOK A CALL</button></a>
+    </nav>
+
+    <section class="hero">
+        <div class="grid-background"></div>
+        <div class="hero-content">
+            <h1>
+                Welcome to<br />
+                <span class="xcendlabs">XcendLabs</span>
+            </h1>
+            <div class="divider"></div>
+            <p class="tagline typing" style="font-size: 1.5rem;"></p>
+            <button class="cta-button" style="margin-top: 2rem;" onclick="window.location.href='https://calendly.com/xcendlabs/free-strategy-call';">🚀 Launch My Growth</button>
+        </div>
+    </section>
+
+    <section class="about-us" style="padding: 7rem 5%; background-color: #000000; text-align: center;">
+        <h2 class="section-title">About Us</h2>
+        <p style="color: #ffffff; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            Fueled by relentless curiosity and a drive to innovate. At XcendLabs,  We blend critical thinking with creative firepower to deliver fast, trustworthy solutions that propel businesses forward.
+        </p>
+        <p style="color: #ffffff; font-size: 1.2rem; max-width: 800px; margin: 2rem auto 0;">
+            Hand us the impossible—we'll return breakthroughs that redefine success. Speed, precision, and unwavering commitment aren't just promises; they're our foundation. Your ambition fuels our mission. Let's turn obstacles into outcomes and ideas into action.
+        </p>
+    </section>
+
+    <section class="services" style="padding: 7rem 5%;">
+        <h2 class="section-title">Our Superpowers 🔥</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="emoji">🤖</div>
+                <h3>GHL Automation</h3>
+                <p>Full-cycle automation solutions for seamless operations</p>
+            </div>
+            <div class="service-card">
+                <div class="emoji">💻</div>
+                <h3>Web Development</h3>
+                <p>Conversion-focused websites that drive results</p>
+            </div>
+            <div class="service-card">
+                <div class="emoji">📱</div>
+                <h3>Social Media Management</h3>
+                <p>Create, schedule, and dominate your social presence</p>
+            </div>
+            <div class="service-card">
+                <div class="emoji">⚡</div>
+                <h3>Custom Automations</h3>
+                <p>Tailored solutions for your unique workflow</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us">
+        <h2 class="section-title">Why XcendLabs?</h2>
+        <div class="benefits-list">
+            <div class="benefit-item">
+                <h3 style="font-size: 1.3rem;">24/7 Automation Monitoring</h3>
+                <p style="margin-top: 10px; color:#cfd2d4; font-size: 1.2rem;">Your systems never sleep - neither do we</p>
+            </div>
+            <div class="benefit-item">
+                <h3 style="font-size: 1.3rem;">Premium Support</h3>
+                <p style="margin-top: 10px; color: #cfd2d4; font-size: 1.2rem;">Direct access to our expert team</p>
+            </div>
+            <div class="benefit-item">
+                <h3 style="font-size: 1.3rem;">ROI-Focused Strategies</h3>
+                <p style="margin-top: 10px; color: #cfd2d4; font-size: 1.2rem;">We measure success by your growth</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="font-size: 2rem;">Ready to Scale Your Business? 🚀</h2>
+        <button class="cta-button" style="margin: 2rem 0;" onclick="window.location.href='https://calendly.com/xcendlabs/free-strategy-call';">BOOK STRATEGY CALL > </button>
+        <div class="social-links">
+            
+            <a href="https://calendly.com/xcendlabs/free-strategy-call">"click for a free coffee ☕"</a>
+            
+        </div>
+        <p style="margin-top: 2rem;">© 2025 XcendLabs</p>
+    </footer>
+</body>
+</html>
